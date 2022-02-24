@@ -5,7 +5,7 @@ import pika
 
 rest_temp = Blueprint('rest_temp', __name__)
 
-@app.route('/listen', methods=['POST'])
+@rest_temp.route('/listen', methods=['POST'])
 def listen():
     def callback(ch, method, properties, body):
         print(" [x] %r" % body)
@@ -30,7 +30,7 @@ def listen():
     return jsonify(msg=data.decode('utf_8'))
 
     
-@app.route('/speak', methods=['POST'])
+@rest_temp.route('/speak', methods=['POST'])
 def speak():
     request_data = request.get_json()
     connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
