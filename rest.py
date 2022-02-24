@@ -1,11 +1,9 @@
 from dataclasses import dataclass
 from encodings import utf_8
-from flask import Flask, jsonify, request
+from flask import Blueprint, Flask, jsonify, request
 import pika
 
-app = Flask(__name__)
-if "__main__" == __name__:
-    app.run(host="0.0.0.0", port=80)
+rest_temp = Blueprint('rest_temp', __name__)
 
 @app.route('/listen', methods=['POST'])
 def listen():
